@@ -8,7 +8,9 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Include="Graph.fs" />
     <Compile Include="GraphTraversal.fs" />
+    <Compile Include="HasPathProblem.fs" />
     <Compile Include="Program.fs" />
   </ItemGroup>
 

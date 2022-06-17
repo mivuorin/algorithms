@@ -3,32 +3,27 @@ module Graphs.GraphTraversal
 open NUnit.Framework
 open FsUnit
 
-type Node = string
-type Graph = Map<Node, Node list>
-
-let node n = n
-let a = node "a"
-let b = node "b"
-let c = node "c"
-let d = node "d"
-let e = node "e"
-let f = node "f"
+let a = Graph.node "a"
+let b = Graph.node "b"
+let c = Graph.node "c"
+let d = Graph.node "d"
+let e = Graph.node "e"
+let f = Graph.node "f"
 
 // adjacency list
 let graph: Graph =
-    Map [ (a, [ b; c ])
-          (b, [ d ])
-          (c, [ e ])
-          (d, [ f ])
-          (e, [])
-          (f, []) ]
-
-let edges node (graph: Graph) = graph.[node]
+    Graph.create [ (a, [ b; c ])
+                   (b, [ d ])
+                   (c, [ e ])
+                   (d, [ f ])
+                   (e, [])
+                   (f, []) ]
 
 let rec depthFirst current (graph: Graph) =
     seq {
         yield current
-        for next in edges current graph do
+
+        for next in Graph.edges current graph do
             yield! depthFirst next graph
     }
 
@@ -36,7 +31,7 @@ let depthFirst2 current (graph: Graph) =
     let rec loop stack items =
         match stack with
         | n :: rest ->
-            let edges = edges n graph
+            let edges = Graph.edges n graph
             loop (edges @ rest) (n :: items)
         | [] -> items
 
@@ -46,7 +41,7 @@ let breadthFirst current (graph: Graph) =
     let rec loop queue items =
         match queue with
         | n :: rest ->
-            let edges = edges n graph
+            let edges = Graph.edges n graph
             loop (rest @ edges) (n :: items)
         | [] -> items
 
