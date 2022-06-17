@@ -22,6 +22,9 @@ module Graph =
     let nodes values = values |> List.map node
 
     let edges node (graph: Graph) = graph.[node] |> Set.toList
+    
+    let notVisited node (visited: Edges) (graph: Graph) =
+        graph.[node] - visited |> Set.toList
 
     let fromEdges (edges: Edge list) =
         let addOrPrepend node (existing: Edges option) =
