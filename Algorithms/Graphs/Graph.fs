@@ -37,3 +37,14 @@ module Graph =
             | [] -> graph
 
         loop edges (Map [])
+
+    let map start f graph =
+        let rec loop nodes results visited =
+            match nodes with
+            | current :: rest ->
+                let results = f(current) :: results
+                let visited = Set.add current visited
+                let next = notVisited current visited graph
+                loop (next @ rest) results visited
+            | [] -> results
+        loop [start] [] Set.empty
