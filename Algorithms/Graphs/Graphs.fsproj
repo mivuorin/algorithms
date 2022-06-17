@@ -12,6 +12,7 @@
     <Compile Include="GraphTraversal.fs" />
     <Compile Include="HasPathProblem.fs" />
     <Compile Include="UndirectedPath.fs" />
+    <Compile Include="ConnectedNodesCount.fs" />
     <Compile Include="Program.fs" />
   </ItemGroup>
 

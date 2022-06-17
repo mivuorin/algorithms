@@ -1,33 +1,28 @@
 ﻿namespace Graphs
 
-type Node = string
 
-type Edge = (Node * Node)
+type Graph<'a when 'a : comparison> = Map<'a, Set<'a>>
 
-type Edges = Set<Node>
-
-type Graph = Map<Node, Set<Node>>
+type Edge<'a> = 'a * 'a
 
 module Graph =
 
-    let create (adjacentList: seq<Node * Node list>) : Graph =
+    let create (adjacentList: seq<'a * 'a list>)  =
         adjacentList
         |> Seq.map (fun (key, nodes) -> (key, Set nodes))
         |> Map
-
-    let empty: Graph = create []
 
     let node n = n
 
     let nodes values = values |> List.map node
 
-    let edges node (graph: Graph) = graph.[node] |> Set.toList
+    let edges node (graph: Graph<'a>) = graph.[node] |> Set.toList
     
-    let notVisited node (visited: Edges) (graph: Graph) =
+    let notVisited node (visited: Set<'a>) (graph: Graph<'a>) =
         graph.[node] - visited |> Set.toList
 
-    let fromEdges (edges: Edge list) =
-        let addOrPrepend node (existing: Edges option) =
+    let fromEdges (edges:  ('a * 'a) list) =
+        let addOrPrepend node (existing: Set<'a> option) =
             match existing with
             | Some existing -> Set.add node existing |> Some
             | None -> Set [ node ] |> Some
@@ -41,4 +36,4 @@ module Graph =
                 |> loop rest
             | [] -> graph
 
-        loop edges empty
+        loop edges (Map [])

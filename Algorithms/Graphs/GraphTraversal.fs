@@ -3,15 +3,15 @@ module Graphs.GraphTraversal
 open NUnit.Framework
 open FsUnit
 
-let a = Graph.node "a"
-let b = Graph.node "b"
-let c = Graph.node "c"
-let d = Graph.node "d"
-let e = Graph.node "e"
-let f = Graph.node "f"
+let a = "a"
+let b = "b"
+let c = "c"
+let d = "d"
+let e = "e"
+let f = "f"
 
 // adjacency list
-let graph: Graph =
+let graph =
     Graph.create [ (a, [ b; c ])
                    (b, [ d ])
                    (c, [ e ])
@@ -19,7 +19,7 @@ let graph: Graph =
                    (e, [])
                    (f, []) ]
 
-let rec depthFirst current (graph: Graph) =
+let rec depthFirst current graph =
     seq {
         yield current
 
@@ -27,7 +27,7 @@ let rec depthFirst current (graph: Graph) =
             yield! depthFirst next graph
     }
 
-let depthFirst2 current (graph: Graph) =
+let depthFirst2 current graph =
     let rec loop stack items =
         match stack with
         | n :: rest ->
@@ -37,7 +37,7 @@ let depthFirst2 current (graph: Graph) =
 
     loop [ current ] [] |> List.rev
 
-let breadthFirst current (graph: Graph) =
+let breadthFirst current graph =
     let rec loop queue items =
         match queue with
         | n :: rest ->

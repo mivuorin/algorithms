@@ -4,15 +4,15 @@ open System
 open FsUnit
 open NUnit.Framework
 
-let i = Graph.node "i"
-let j = Graph.node "j"
-let k = Graph.node "k"
-let m = Graph.node "m"
-let l = Graph.node "l"
-let o = Graph.node "o"
-let n = Graph.node "n"
+let i = "i"
+let j = "j"
+let k = "k"
+let m = "m"
+let l = "l"
+let o = "o"
+let n = "n"
 
-let edges: Edge list =
+let edges: Edge<string> list =
     [ (i, j)
       (k, i)
       (m, k)
@@ -29,7 +29,7 @@ let expected =
                    (o, [ n ])
                    (n, [ o ]) ]
 
-let hasPath (source: Node) (destiny: Node) (graph: Graph) : bool =
+let hasPath (source: 'a) (destiny: 'a) (graph: Graph<'a>) : bool =
     let rec loop nodes visited =
         match nodes with
         | current :: rest ->

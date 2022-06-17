@@ -19,7 +19,7 @@ let graph =
                    (j, [ i ])
                    (k, []) ]
 
-let hasPath (source: Node) (destiny: Node) (graph: Graph) : bool =
+let hasPath (source: 'a) (destiny: 'a) (graph: Graph<'a>) : bool =
     let rec loop nodes =
         match nodes with
         | current :: rest ->
