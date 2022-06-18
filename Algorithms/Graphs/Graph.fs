@@ -32,7 +32,7 @@ module Graph =
             | [] -> graph
 
         loop edges (Map [])
-    
+
     /// Maps over linked nodes in graph
     let map start mapping graph =
         let rec loop nodes results visited =
@@ -60,12 +60,12 @@ module Graph =
                     loop rest visited results
                 else
                     let traversed = map current id graph
-                    let result = mapping(traversed)
+                    let result = mapping (traversed)
                     loop rest (visited + Set(traversed)) (result :: results)
             | [] -> results
 
         loop (nodes graph) Set.empty []
-    
+
     /// Tests if any node in linked nodes satisfies predicate
     let exists start predicate graph : bool =
         let rec loop nodes visited =
@@ -82,3 +82,7 @@ module Graph =
             | [] -> false
 
         loop [ start ] Set.empty
+
+    /// Prints linked nodes in graph
+    let print graph =
+        graph |> mapMany (printfn "%A") |> ignore
