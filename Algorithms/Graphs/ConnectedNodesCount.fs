@@ -14,23 +14,14 @@ let graph =
                    (2, [ 1 ]) ]
 
 let connectedNodeCounts (graph: Graph<'a>) =
-    let rec traverse nodes visited =
-        match nodes with
-        | current :: rest ->
-            let visited = Set.add current visited
-            let next = Graph.notVisited current visited graph
-            traverse (next @ rest) visited
-        | [] -> visited
-
     let rec loop nodes count visited =
         match nodes with
         | current :: rest ->
-            if Set.contains current visited then
+            if Set.contains current visited then 
                 loop rest count visited
             else
-                visited
-                |> traverse [ current ]
-                |> loop rest (count + 1)
+                let traversed = Graph.map current id graph 
+                loop rest (count + 1) (visited + Set(traversed))
         | [] -> count
 
     let nodes = Map.keys graph |> List.ofSeq

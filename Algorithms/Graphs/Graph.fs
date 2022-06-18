@@ -42,7 +42,8 @@ module Graph =
         let rec loop nodes results visited =
             match nodes with
             | current :: rest ->
-                let results = f(current) :: results
+                let result = f(current)
+                let results = result :: results
                 let visited = Set.add current visited
                 let next = notVisited current visited graph
                 loop (next @ rest) results visited
