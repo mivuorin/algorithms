@@ -13,19 +13,9 @@ let graph =
                    (1, [ 2 ])
                    (2, [ 1 ]) ]
 
+
 let connectedNodeCounts (graph: Graph<'a>) =
-    let rec loop nodes count visited =
-        match nodes with
-        | current :: rest ->
-            if Set.contains current visited then
-                loop rest count visited
-            else
-                let traversed = Graph.map current id graph
-                loop rest (count + 1) (visited + Set(traversed))
-        | [] -> count
-
-    loop (Graph.nodes graph) 0 Set.empty
-
+    graph |> Graph.mapMany (fun _ -> 1) |> List.sum
 
 [<Test>]
 let Connected_nodes_count_in_graph () =

@@ -30,7 +30,7 @@ let expected =
                    (n, [ o ]) ]
 
 let hasPath (source: 'a) (destiny: 'a) (graph: Graph<'a>) : bool =
-    Graph.find source (fun n -> n = destiny) graph
+    Graph.exists source (fun n -> n = destiny) graph
 
 [<Test>]
 let Edges_to_graph () =
