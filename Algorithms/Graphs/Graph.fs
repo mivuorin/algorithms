@@ -16,9 +16,6 @@ module Graph =
 
     let edges node (graph: Graph<'a>) = graph.[node] |> Set.toList
 
-    let notVisited node (visited: Set<'a>) (graph: Graph<'a>) =
-        graph.[node] - visited |> Set.toList
-
     let fromEdges (edges: ('a * 'a) list) =
         let addOrPrepend node (existing: Set<'a> option) =
             match existing with
@@ -36,14 +33,14 @@ module Graph =
 
         loop edges (Map [])
 
-    let map start (f: 'a -> 'b) (graph: Graph<'a>) =
+    let map start mapping graph =
         let rec loop nodes results visited =
             match nodes with
             | current :: rest ->
                 if Set.contains current visited then
                     loop rest results visited
                 else
-                    let result = f current
+                    let result = mapping current
 
                     loop
                         (graph |> edges current |> List.append rest)
@@ -52,3 +49,19 @@ module Graph =
             | [] -> results
 
         loop [ start ] [] Set.empty
+
+    let find start predicate graph : bool =
+        let rec loop nodes visited =
+            match nodes with
+            | current :: rest ->
+                if Set.contains current visited then
+                    loop rest visited
+                else if predicate (current) then
+                    true
+                else
+                    loop
+                        (graph |> edges current |> List.append rest)
+                        (Set.add current visited)
+            | [] -> false
+
+        loop [ start ] Set.empty

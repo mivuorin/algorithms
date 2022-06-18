@@ -30,20 +30,7 @@ let expected =
                    (n, [ o ]) ]
 
 let hasPath (source: 'a) (destiny: 'a) (graph: Graph<'a>) : bool =
-    let rec loop nodes visited =
-        match nodes with
-        | current :: rest ->
-            if current = destiny then
-                true
-            else if Set.contains current visited then
-                false
-            else
-                let visited = Set.add current visited
-                let next = Graph.notVisited current visited graph
-                loop (next @ rest) visited
-        | [] -> false
-
-    loop [ source ] Set.empty
+    Graph.find source (fun n -> n = destiny) graph
 
 [<Test>]
 let Edges_to_graph () =
