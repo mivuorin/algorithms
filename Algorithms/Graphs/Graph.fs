@@ -12,10 +12,6 @@ module Graph =
         |> Seq.map (fun (key, nodes) -> (key, Set nodes))
         |> Map
 
-    let node n = n
-
-    let nodes values = values |> List.map node
-
     let edges node (graph: Graph<'a>) = graph.[node] |> Set.toList
     
     let notVisited node (visited: Set<'a>) (graph: Graph<'a>) =
@@ -49,3 +45,4 @@ module Graph =
                 loop (next @ rest) results visited
             | [] -> results
         loop [start] [] Set.empty
+    

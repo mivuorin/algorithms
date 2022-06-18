@@ -3,12 +3,12 @@
 open FsUnit
 open NUnit.Framework
 
-let f = Graph.node "f"
-let g = Graph.node "g"
-let h = Graph.node "h"
-let i = Graph.node "i"
-let j = Graph.node "j"
-let k = Graph.node "k"
+let f = "f"
+let g = "g"
+let h = "h"
+let i = "i"
+let j = "j"
+let k = "k"
 
 // Directed acyclic graph
 let graph =
