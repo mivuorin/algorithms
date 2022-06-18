@@ -9,6 +9,7 @@
 
   <ItemGroup>
     <Compile Include="Graph.fs" />
+    <Compile Include="Map.fs" />
     <Compile Include="GraphTraversal.fs" />
     <Compile Include="HasPathProblem.fs" />
     <Compile Include="UndirectedPath.fs" />
