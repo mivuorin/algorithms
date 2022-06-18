@@ -15,6 +15,7 @@
     <Compile Include="UndirectedPath.fs" />
     <Compile Include="ConnectedNodesCount.fs" />
     <Compile Include="LargestComponent.fs" />
+    <Compile Include="ShortestPath.fs" />
     <Compile Include="Program.fs" />
   </ItemGroup>
 
