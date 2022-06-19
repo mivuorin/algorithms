@@ -16,6 +16,7 @@
     <Compile Include="ConnectedNodesCount.fs" />
     <Compile Include="LargestComponent.fs" />
     <Compile Include="ShortestPath.fs" />
+    <Compile Include="IslandCount.fs" />
     <Compile Include="Program.fs" />
   </ItemGroup>
 
