@@ -9,6 +9,7 @@
 
   <ItemGroup>
     <Compile Include="Graph.fs" />
+    <Compile Include="Grid.fs" />
     <Compile Include="Map.fs" />
     <Compile Include="GraphTraversal.fs" />
     <Compile Include="HasPathProblem.fs" />
@@ -17,6 +18,7 @@
     <Compile Include="LargestComponent.fs" />
     <Compile Include="ShortestPath.fs" />
     <Compile Include="IslandCount.fs" />
+    <Compile Include="SmallestIsland.fs" />
     <Compile Include="Program.fs" />
   </ItemGroup>
 
